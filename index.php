@@ -27,6 +27,11 @@
                     <td> Triple: <input type="checkbox" name="Triple"></td>
                     <td> Quadruple: <input type="checkbox" name="Quadruple"></td>
                 </tr>
+
+                <tr>
+                    <td> Quintuple: <input type="checkbox" name="Quintuple"></td>
+                    <td> Sextuple: <input type="checkbox" name="Sextuple"></td>
+                </tr>
             </table>
 
         </fieldset>
@@ -95,6 +100,12 @@ if (isset($_POST['personnes'])) {
     if (isset($_POST['Quadruple'])) {
         $logement['Quadruple'] = 4;
     }
+    if (isset($_POST['Quintuple'])) {
+        $logement['Quintuple'] = 5;
+    }
+    if (isset($_POST['Sextuple'])) {
+        $logement['Sextuple'] = 6;
+    }
 
     foreach ($logement as $key => $value) {
         $log .= $key . ' / ';
@@ -116,16 +127,35 @@ if (isset($_POST['personnes'])) {
     $obj->execute();
     $resultat = $obj->getResult();
 
+    function calcRes($value, $personnes)
+    {
+        $types = array('Single' => 1, 'Double' => 2, 'Triple' => 3,
+            'Quadruple' => 4, 'Quintuple' => 5, 'Sextuple' => 6);
+        $tab = explode(' ', trim($value));
+        $somme = 0;
+        for ($k = 0; $k <= count($tab) - 2; $k += 2) {
+            $somme += ((int)$tab[$k] * $types[$tab[$k + 1]]);
+        }
+        return (int)$personnes - $somme;
+    }
+
     $i = 1;
     echo "<table align='center'>";
     foreach ($resultat as $key => $value) {
-        echo "<tr> <td> <strong>Proposition $i </strong>:  $value </td> </tr>";
+        $res = calcRes($value, $personnes);
+        if ($res == 0) {
+            echo "<tr> <td> <strong>Proposition $i </strong>:  $value </td> </tr>";
+        } else {
+            echo "<tr> <td> <strong>Proposition $i </strong>:  $value / Reste: $res </td> </tr>";
+        }
         $i++;
     }
     echo "</table>";
     echo "<br>";
-
 }
+
+
+
 ?>
 <br>
 <hr>

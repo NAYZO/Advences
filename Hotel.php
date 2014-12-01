@@ -11,14 +11,14 @@ class Hotel
     private $types = array();
     private $result = array();
 
-    function __construct($x, $types)
+    public function __construct($x, $types)
     {
         $this->x = $x;
         $this->types = $types;
         arsort($this->types);
     }
 
-    function execute()
+    public function execute()
     {
         $buffer = $this->types;
         while (count($buffer) > 0) {
