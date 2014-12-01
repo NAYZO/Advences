@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
+ *
+ */
+
 class Hotel
 {
     private $x;

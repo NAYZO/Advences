@@ -71,6 +71,11 @@
 </script>
 
 <?php
+/*
+ * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
+ *
+ */
+
 require_once "Hotel.php";
 
 if (isset($_POST['personnes'])) {
@@ -122,7 +127,9 @@ if (isset($_POST['personnes'])) {
 
 }
 ?>
-
+<br>
+<hr>
+<strong>(c) Developed by, Ala Eddine Khefifi</strong>
 </body>
 
 </html>
