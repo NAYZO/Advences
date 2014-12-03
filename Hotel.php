@@ -1,5 +1,4 @@
 <?php
-
 /*
  * (c) Ala Eddine Khefifi <alakhefifi@gmail.com>
  *
